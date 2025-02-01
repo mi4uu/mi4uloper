@@ -1,0 +1,78 @@
+# Deepseek Code Review Action
+#   @author: hustcer
+#   @created: 2025/01/29 13:05:20
+# REF:
+#   - https://docs.github.com/cn/actions/creating-actions/about-custom-actions
+#   - https://docs.github.com/cn/actions/creating-actions/metadata-syntax-for-github-actions
+#   - https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+
+name: 'mi4uloper'
+author: 'mi4uu'
+description: '🚀 Sharpen Your Code, Ship with Confidence – Elevate Your Workflow with ai review 🚀'
+
+branding:
+  icon: 'eye'
+  color: 'purple'
+
+inputs:
+  chat-token:
+    required: true
+    description: 'Your ai API token.'
+  max-length:
+    default: "0"
+    required: false
+    description: 'The maximum length of the content for review, 0 means no limit.'
+  model:
+    required: false
+    default: 'auto'
+    description: 'The  model to choose for code review. if not set it will take first avilable'
+  base-url:
+    required: false
+    default: 'https://api.deepseek.com'
+    description: 'The base url of ai provider API.'
+  sys-prompt:
+    required: false
+    default: 'You are a professional code review assistant responsible for analyzing code changes in GitHub Pull Requests. Identify potential issues such as code style violations, logical errors, security vulnerabilities, and provide improvement suggestions. Clearly list the problems and recommendations in a concise manner.'
+    description: 'The system prompt for ai API.'
+  user-prompt:
+    required: false
+    default: 'Please review the following code changes'
+    description: 'The user prompt for ai API.'
+  include-patterns:
+    required: false
+    description: 'The comma separated file patterns to include in the code review.'
+  exclude-patterns:
+    required: false
+    default: 'pnpm-lock.yaml,package-lock.json,*.lock'
+    description: 'The comma separated file patterns to exclude in the code review.'
+  embedding_model:
+    required: false
+    default: "local"
+    description: "set to local or specify to other model if you want to use API for embeddings"
+  github-token:
+    required: false
+    default: '${{ github.token }}'
+    description: 'The GITHUB_TOKEN secret or personal access token to authenticate. Defaults to `github.token`.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Bun
+      uses: oven-sh/setup-bun@v1
+
+    - name: Code Review
+      shell: bash
+      env:
+        model: ${{ inputs.model }}
+        embedding_model:  ${{ inputs.embedding_model }}
+        baseUrl: ${{ inputs.base-url }}
+        repo: ${{ github.repository }}
+        OPENAI_API_KEY: ${{ inputs.chat-token }}
+        ghToken: ${{ inputs.github-token }}
+        sysPrompt: ${{ inputs.sys-prompt }}
+        userPrompt: ${{ inputs.user-prompt }}
+        pr: ${{ github.event.pull_request.number }}
+        includePatterns: ${{ inputs.include-patterns }}
+        excludePatterns: ${{ inputs.exclude-patterns }}
+        maxLength: ${{ inputs.max-length }}
+      run: bun --bun run src/index.ts
