@@ -69,10 +69,12 @@ runs:
         repo: ${{ github.repository }}
         OPENAI_API_KEY: ${{ inputs.chat-token }}
         ghToken: ${{ inputs.github-token }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         sysPrompt: ${{ inputs.sys-prompt }}
         userPrompt: ${{ inputs.user-prompt }}
         pr: ${{ github.event.pull_request.number }}
         includePatterns: ${{ inputs.include-patterns }}
         excludePatterns: ${{ inputs.exclude-patterns }}
         maxLength: ${{ inputs.max-length }}
+
       run: bun --bun run src/index.ts
