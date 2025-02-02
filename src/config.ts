@@ -19,6 +19,7 @@ export const GITHUB_LAST_COMMIT_REF = process.env.GITHUB_LAST_COMMIT_REF
 export const GITHUB_PR_REF = process.env.GITHUB_PR_REF
 export const GITHUB_PR_HEAD_REF=process.env.GITHUB_PR_HEAD_REF
 
+////
 // The head ref or source branch of the pull request in a workflow run.
 //GITHUB_HEAD_REF
 
