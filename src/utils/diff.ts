@@ -7,6 +7,7 @@ export const getDiff = async (baseUrl: string): Promise<string> => {
 
   const { data } = await octokit.rest.pulls.get({
     owner,
+    
     repo,
     pull_number: parseInt(prNumber!),
     mediaType: { format: 'diff' },
