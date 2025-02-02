@@ -69,7 +69,7 @@ runs:
         repo: ${{ github.repository }}
         OPENAI_API_KEY: ${{ inputs.chat-token }}
         ghToken: ${{ inputs.github-token }}
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ inputs.github-token }}
         sysPrompt: ${{ inputs.sys-prompt }}
         userPrompt: ${{ inputs.user-prompt }}
         pr: ${{ github.event.pull_request.number }}
