@@ -86,9 +86,9 @@ runs:
         echo "  github.event.pull_request.head.sha: ${{ github.event.pull_request.head.sha }}"
         echo " github.head_ref :  ${{ github.head_ref }} "
         # pr first commit?
-        echo " GITHUB_REF :  ${{ GITHUB_REF }} ...  $GITHUB_REF"
+        #echo " GITHUB_REF :  ${{ GITHUB_REF }} ...  $GITHUB_REF"
         # last commit in pr
-        echo " GITHUB_SHA :  ${{ GITHUB_SHA }} ... $GITHUB_SHA"
+        #echo " GITHUB_SHA :  ${{ GITHUB_SHA }} ... $GITHUB_SHA"
         
         echo "GIT STATUS:"
         git status
