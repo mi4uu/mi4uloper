@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: wanna know
-        run: pwd
+        run: git config --global --add safe.directory .
       - name: yyyls
         run: ls
       - id: model
