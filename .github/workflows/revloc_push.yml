@@ -1,4 +1,4 @@
-name: PR Review with local
+name: PR Review with local pr
 on:
   pull_request:
 permissions: write-all
