@@ -1,7 +1,7 @@
 import { Octokit } from "octokit";
 import * as config from '../config'
 import { ShellError } from "bun";
-import core from '@actions/core'
+import { logger } from "./logger";
 
 
 // const octokit = new Octokit({ auth: config.ghToken });
@@ -12,19 +12,17 @@ import core from '@actions/core'
 // } = await octokit.rest.users.getAuthenticated();
 
 export const getChangedFiles = async (baseRef: string, headRef: string) => {
-  core.info(await Bun.$`pwd `.text())
-  core.info(await Bun.$`ls `.text())
-  core.warning(`git diff --name-only ${baseRef} ${headRef} `);
-  core.info(`git diff --name-only ${baseRef} ${headRef} `);
-  console.log(`git diff --name-only ${baseRef} ${headRef} `);
-  Bun.inspect(`git diff --name-only ${baseRef} ${headRef} `)
+  logger.info(await Bun.$`pwd `.text())
+  logger.info(await Bun.$`ls `.text())
+  logger.warn(`git diff --name-only ${baseRef} ${headRef} `);
+  logger.info(`git diff --name-only ${baseRef} ${headRef} `);
   try{
     const files = await Bun.$`git diff --name-only ${baseRef} ${headRef} `.text()
   return files.split("\n").map(f => f.trim()).filter(f => f.length > 1)
 } catch (err:any ) {
-  core.warning(err.stdout.toString());
-  core.warning(err.stderr.toString());
-  core.error(`Failed with code ${err.exitCode}`);
+  logger.warn(err.stdout.toString());
+  logger.warn(err.stderr.toString());
+  logger.error(`Failed with code ${err.exitCode}`);
   throw err
 }
 }
@@ -35,12 +33,12 @@ export const getChangedSummary = async (baseRef: string, headRef: string) => {
 
 export const getFileDiff = async (baseRef: string, headRef: string, file?: string) => {
   if(file){
-  console.log(`git diff  ${baseRef} ${headRef} -- ${file}`)
+    logger.log(`git diff  ${baseRef} ${headRef} -- ${file}`)
   const { stdout, stderr, exitCode } = await Bun.$`git diff  ${baseRef} ${headRef} -- ${file}`
   if(exitCode!==0){
     const decoder = new TextDecoder();
 
-    console.error({
+    logger.error({
       error:"is error!!!",
       msg: decoder.decode(stderr)
     })
