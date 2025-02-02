@@ -21,9 +21,8 @@ const main = async ()=>{
   const files=await getChangedFiles(baseRef,headRef)
   const summary=await getChangedSummary(baseRef,headRef)
   logger.log(files)
-  for(const file of files){
+  for(const file of files.filter(f=>f.indexOf("dist")<0)){
     const diff = await getFileDiff(baseRef,headRef,file)
-    // console.log(diff)
     if(diff.length>3000) continue
     logger.log(file)
     // const emb=await embeddings(diff)

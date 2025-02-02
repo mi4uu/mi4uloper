@@ -61,7 +61,7 @@ export const isGitRepo = async () => {
 // git diff --name-only ${base} ${head} 
 export const addComment = async (comment: string, file: string, commit: string) => {
 
-  return await Bun.$`gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/OWNER/REPO/pulls/PULL_NUMBER/comments -f "body=${comment}" -f "commit_id=${commit}" -f "path=${file}"`.text()
+  return await Bun.$`gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${config.repo}/pulls/${config.pr}/comments -f "body=${comment}" -f "commit_id=${commit}" -f "path=${file}"`.text()
 }
 export const getPrInfo = async () => {
   const result = await Bun.$`gh pr view ${config.pr} --repo ${config.repo} --json title,body,baseRefOid,headRefOid,headRepository,state

@@ -1,5 +1,3 @@
-
-
 export const prompt=`
 Please review the pr code .
 code will be give as diffs.
