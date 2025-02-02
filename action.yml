@@ -79,9 +79,10 @@ runs:
 
       run: |
         echo "PWD:"
-        
+
         pwd
         echo "LS:"
+        
         ls
         echo "github.action_path : ${{ github.action_path }}"
         echo "  github.event.pull_request.head.sha: ${{ github.event.pull_request.head.sha }}"
