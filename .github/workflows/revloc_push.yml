@@ -35,5 +35,5 @@ jobs:
           model: "${{ steps.model.outputs.value }}"
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
-            ACTIONS_RUNNER_DEBUG: 1
+            ACTIONS_RUNNER_DEBUG: true
           

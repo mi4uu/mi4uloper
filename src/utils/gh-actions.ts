@@ -1,7 +1,7 @@
 import { Octokit } from "octokit";
 import * as config from '../config'
 import { ShellError } from "bun";
-
+import core from '@actions/core'
 
 
 // const octokit = new Octokit({ auth: config.ghToken });
@@ -12,17 +12,17 @@ import { ShellError } from "bun";
 // } = await octokit.rest.users.getAuthenticated();
 
 export const getChangedFiles = async (baseRef: string, headRef: string) => {
-  console.log(await Bun.$`pwd `.text())
-  console.log(await Bun.$`ls `.text())
+  core.info(await Bun.$`pwd `.text())
+  core.info(await Bun.$`ls `.text())
 
 
   const files = await Bun.$`git diff --name-only ${baseRef} ${headRef} `.text()
   try{
   return files.split("\n").map(f => f.trim()).filter(f => f.length > 1)
 } catch (err:any ) {
-  console.log(`Failed with code ${err.exitCode}`);
-  console.log(err.stdout.toString());
-  console.log(err.stderr.toString());
+  core.warning(err.stdout.toString());
+  core.warning(err.stderr.toString());
+  core.error(`Failed with code ${err.exitCode}`);
   throw err
 }
 }
