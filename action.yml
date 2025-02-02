@@ -1,5 +1,4 @@
-# Deepseek Code Review Action
-#   @author: hustcer
+#   @author: MI4UU
 #   @created: 2025/01/29 13:05:20
 # REF:
 #   - https://docs.github.com/cn/actions/creating-actions/about-custom-actions
@@ -85,6 +84,8 @@ runs:
         echo "LS:"
         ls
         echo "github.action_path : ${{ github.action_path }}"
+        echo "LS github.action_path : ${{ github.action_path }}"
+        ls ${{ github.action_path }}
         echo "  github.event.pull_request.head.sha: ${{ github.event.pull_request.head.sha }}"
         echo " github.head_ref :  ${{ github.head_ref }} "
         # pr first commit?
