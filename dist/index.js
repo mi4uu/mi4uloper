@@ -13020,8 +13020,8 @@ var reviewChanges = async (diff, baseURL, apiKey, modelName, prompt7 = system_pr
 // src/index.ts
 var main = async () => {
   const info = await getPrInfo();
-  const headRef = "HEAD";
-  const baseRef = GITHUB_LAST_COMMIT_REF;
+  const headRef = GITHUB_PR_HEAD_REF;
+  const baseRef = GITHUB_PR_REF;
   const files = await getChangedFiles(baseRef, headRef);
   const summary = await getChangedSummary(baseRef, headRef);
   logger.log(files);
