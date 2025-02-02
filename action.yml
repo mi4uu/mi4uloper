@@ -75,8 +75,9 @@ runs:
         includePatterns: ${{ inputs.include-patterns }}
         excludePatterns: ${{ inputs.exclude-patterns }}
         maxLength: ${{ inputs.max-length }}
-        GITHUB_LAST_COMMIT_REF: ${{ github.event.pull_request.head.sha }}"
-        GITHUB_PR_REF: ${{ github.head_sha }}"
+        GITHUB_LAST_COMMIT_REF: ${{ github.sha }}"
+        GITHUB_PR_REF: ${{ github.event.pull_request.base.sha }}"
+        GITHUB_PR_HEAD_REF: ${{ github.event.pull_request.head.sha }}
 
       run: |
         echo "PWD:"
@@ -96,8 +97,8 @@ runs:
         echo "github.sha ${{ github.sha }}"
         echo "event.head.sha ${{ github.event.pull_request.head.sha }}"
         echo "event.base.sha ${{ github.event.pull_request.base.sha }}"
-        echo "last commit -> pr"
-        git diff --stat ${{ github.sha }} ${{ github.head_sha }}
+        echo "ev h -> ev b"
+        git diff --stat ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }}
         echo "last commit -> head"
         git diff --stat  ${{ github.sha }} HEAD
         echo "last commit <- head"
