@@ -18,6 +18,7 @@ const ReviewSchema = z.object({
     is_action_required:z.boolean().describe("should we address this issue?"),
     category: z.enum(["bug", "idea", "critical-bug","might cause problem", "optimalization","fix","consistency","style"]),
     comment: z.string().describe("your code comment."),
+
     
   }), z.object({
     is_comment_needed:z.literal(false).describe('this change is fine and dont need your feedback.')
