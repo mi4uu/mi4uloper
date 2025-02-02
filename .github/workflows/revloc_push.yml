@@ -1,6 +1,6 @@
 name: PR Review with local
 on:
-  push:
+  pull_request:
 permissions: write-all
 jobs:
   review:
