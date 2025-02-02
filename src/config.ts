@@ -15,6 +15,9 @@ export const pr = process.env.pr
 export const includePatterns = process.env.includePatterns
 export const excludePatterns = process.env.excludePatterns
 export const maxLength = process.env.maxLength
+export const GITHUB_LAST_COMMIT_REF = process.env.GITHUB_LAST_COMMIT_REF
+export const GITHUB_PR_REF = process.env.GITHUB_PR_REF
+
 
 
 
