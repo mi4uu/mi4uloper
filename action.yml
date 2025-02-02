@@ -96,11 +96,13 @@ runs:
         echo "GIT STATUS:"
         git status
         echo "GIT diff stat GITHUB_LAST_COMMIT_REF"
-        git diff --stat HEAD "${GITHUB_LAST_COMMIT_REF}"
+        git diff --stat ${{ github.event.pull_request.head.sha }} HEAD
         echo "GIT diff stat GITHUB_PR_REF"
-        git diff --stat HEAD "${GITHUB_PR_REF}"
+        git diff --stat HEAD  ${{ github.head_ref }}
+        echo "GIT diff stat GITHUB_PR_REF"
+        git diff --stat  ${{ github.head_ref }} HEAD
         echo "GIT diff stat GITHUB_LAST_COMMIT_REF ... GITHUB_PR_REF"
-        git diff --stat "${GITHUB_LAST_COMMIT_REF}" "${GITHUB_PR_REF}"
+        git diff --stat ${{ github.event.pull_request.head.sha }}  ${{ github.head_ref }}
         echo "BRANCH:"
         git rev-parse --abbrev-ref HEAD
 
