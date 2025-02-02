@@ -106,11 +106,12 @@ runs:
         echo "GIT log:"
         git log
         git diff --stat ${{ github.event.pull_request.head.sha }} HEAD
+        git diff --stat HEAD ${{ github.event.pull_request.head.sha }} 
         
         echo "GIT diff stat GITHUB_PR_REF"
-        git diff --stat  ${{ github.head_ref }} HEAD
+        git diff --stat  ${{ github.head_sha }} HEAD
         echo "GIT diff stat GITHUB_LAST_COMMIT_REF ... GITHUB_PR_REF"
-        git diff --stat ${{ github.event.pull_request.head.sha }}  ${{ github.head_ref }}
+        git diff --stat ${{ github.event.pull_request.head.sha }}  ${{ github.head_sha }}
         
 
         bun --bun run dist/index.js
