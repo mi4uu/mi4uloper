@@ -99,13 +99,15 @@ runs:
 
 
         echo "github.sha ${{ github.sha }}"
-        echo "github.head_sha ${{ github.head_sha }}"
+        #echo "github.head_sha ${{ github.head_sha }}"
         echo "event.head.sha ${{ github.event.pull_request.head.sha }}"
-        echo "github.sha ${{ github.sha }}"
-        echo "github.base.sha ${{ github.base.sha }}"
-        echo "base sha => last commit "
-        git diff --stat ${{ github.base.sha }} ${{ github.sha }}
         echo "event.base.sha ${{ github.event.pull_request.base.sha }}"
-        echo "event.sha ${{ github.event.pull_request.sha }}"
+        echo "github.base_sha ${{ github.base_sha }}"
+        echo "github.head_sha ${{ github.head_sha }}"
+        echo "pr base => gh sha "
+        git diff --stat ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
+        echo "pr head => gh sha "
+        git diff --stat ${{ github.event.pull_request.head.sha }} ${{ github.sha }}
+        
         
         bun --bun run dist/index.js
