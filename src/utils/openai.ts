@@ -3,13 +3,7 @@ import { zodResponseFormat } from "openai/helpers/zod";
 import { z } from "zod";
 import {prompts} from './prompts/prompts'
 
-// const ReviewSchema = z.object({
-//   is_comment_needed: z.boolean().describe("do you want to comment this code?"),
-//   is_action_required:z.boolean().describe("should we address this issue?"),
-//   comment_category: z.enum(["bug", "idea", "critical-bug","might cause problem", "optimalization","fix","consistency","style"]).nullable(),
-//   comment: z.string().nullable().describe("your code comment. fill only if is_comment_needed is true, otherwise leave as null"),
-//   provided_comment_importance_level:z.enum(['0','1','2','3','4','5','6','7','8','9']).default('0').describe("in scale from 0 to 9 (0 mean not important) how much you think this comment will help")
-// });
+
 
 
 const ReviewSchema = z.object({
