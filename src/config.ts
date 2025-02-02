@@ -1,7 +1,7 @@
 
-const LOCAL_EMBEDDING_MODEL= 'Xenova/all-MiniLM-L6-v2'
-
-
+//const LOCAL_EMBEDDING_MODEL= 'Xenova/all-MiniLM-L6-v2'
+//const LOCAL_EMBEDDING_MODEL= 'Snowflake/snowflake-arctic-embed-s'
+const LOCAL_EMBEDDING_MODEL= 'mixedbread-ai/mxbai-embed-large-v1'
 export const model = process.env.model
 export const embedding_local = !process.env.embedding_model || process.env.embedding_model==='local'
 export const embedding_model = embedding_local?LOCAL_EMBEDDING_MODEL:process.env.embedding_model as string
