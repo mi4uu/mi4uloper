@@ -102,7 +102,7 @@ runs:
         echo "GIT diff stat GITHUB_LAST_COMMIT_REF"
         echo "GIT diff stat GITHUB_PR_REF"
         #git diff --stat HEAD  ${{ github.head_ref }}
-        pit pull
+        git pull
         echo "GIT log:"
         git log
         git diff --stat ${{ github.event.pull_request.head.sha }} HEAD
