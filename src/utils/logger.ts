@@ -8,6 +8,8 @@ const warn=(msg:unknown)=>{
 }
 const error=(msg:unknown)=>{
     core.error(msg as string)
+
+
 }
 export const logger ={
     log:log,

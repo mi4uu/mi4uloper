@@ -81,8 +81,10 @@ runs:
 
       run: |
         echo "PWD:"
+
         pwd
         echo "LS:"
+        
         ls
         echo "github.action_path : ${{ github.action_path }}"
 

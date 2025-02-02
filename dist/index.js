@@ -2889,6 +2889,9 @@ var pr = process.env.pr;
 var includePatterns = process.env.includePatterns;
 var excludePatterns = process.env.excludePatterns;
 var maxLength = process.env.maxLength;
+var GITHUB_LAST_COMMIT_REF = process.env.GITHUB_LAST_COMMIT_REF;
+var GITHUB_PR_REF = process.env.GITHUB_PR_REF;
+var GITHUB_PR_HEAD_REF = process.env.GITHUB_PR_HEAD_REF;
 
 // src/utils/logger.ts
 var import_core = __toESM(require_core(), 1);
@@ -13017,8 +13020,8 @@ var reviewChanges = async (diff, baseURL, apiKey, modelName, prompt7 = system_pr
 // src/index.ts
 var main = async () => {
   const info = await getPrInfo();
-  const headRef = "remotes/origin/master";
-  const baseRef = "HEAD";
+  const headRef = GITHUB_PR_HEAD_REF;
+  const baseRef = GITHUB_PR_REF;
   const files = await getChangedFiles(baseRef, headRef);
   const summary = await getChangedSummary(baseRef, headRef);
   logger.log(files);

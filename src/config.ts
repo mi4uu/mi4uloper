@@ -15,10 +15,27 @@ export const pr = process.env.pr
 export const includePatterns = process.env.includePatterns
 export const excludePatterns = process.env.excludePatterns
 export const maxLength = process.env.maxLength
+export const GITHUB_LAST_COMMIT_REF = process.env.GITHUB_LAST_COMMIT_REF
+export const GITHUB_PR_REF = process.env.GITHUB_PR_REF
+export const GITHUB_PR_HEAD_REF=process.env.GITHUB_PR_HEAD_REF
+
+////
+// The head ref or source branch of the pull request in a workflow run.
+//GITHUB_HEAD_REF
+
+// The name of the base ref or target branch of the pull request in a workflow run
+// GITHUB_BASE_REF
+//k
 
 
 
 
+// The fully-formed ref of the branch or tag that triggered the workflow run. For workflows triggered by push, this is the branch or tag ref that was pushed. For workflows triggered by pull_request, this is the pull request merge branch.
+// GITHUB_REF
+
+
+// The commit SHA that triggered the workflow. 
+// GITHUB_SHA
 
 
 // # Commonly used exit codes

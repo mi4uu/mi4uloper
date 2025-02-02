@@ -1,4 +1,4 @@
-name: PR Review with AI
+name: PR Review with local
 on:
   pull_request_target:
     types: [opened, synchronize]
@@ -8,9 +8,12 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
 
-
+      - name: wanna know
+        run: which git
       - id: model
         name: Get model name
         uses: sergeysova/jq-action@v2
