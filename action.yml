@@ -91,7 +91,8 @@ runs:
         #echo "GIT diff stat GITHUB_LAST_COMMIT_REF ... GITHUB_PR_REF"
         #git diff --stat ${{ github.event.pull_request.head.sha }}  ${{ github.head_sha }}
         git pull
-        echo "${{ github.head_sha }}"
+        echo " github.head.sha  ${{ github.head.sha }}"
+        echo " github.head_sha  ${{ github.head_sha }}"
         echo "github.sha ${{ github.sha }}"
         echo "event.head.sha ${{ github.event.pull_request.head.sha }}"
         echo "event.base.sha ${{ github.event.pull_request.base.sha }}"
