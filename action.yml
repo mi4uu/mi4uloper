@@ -99,16 +99,28 @@ runs:
         echo "event.base.sha ${{ github.event.pull_request.base.sha }}"
         echo "ev h -> ev b"
         git diff --stat ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }}
+        echo "ev h <- ev b"
+        git diff --stat ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
         echo "last commit -> head"
         git diff --stat  ${{ github.sha }} HEAD
         echo "last commit <- head"
         git diff --stat  HEAD ${{ github.sha }} 
         echo "EV BASE -> head"
         git diff --stat   ${{ github.event.pull_request.base.sha }}  HEAD
+        echo "EV head -> head"
+        git diff --stat   ${{ github.event.pull_request.head.sha }}  HEAD
+        echo "EV BASE <- head"
+        git diff --stat   HEAD ${{ github.event.pull_request.base.sha }}  
+        echo "EV head <- head"
+        git diff --stat  HEAD ${{ github.event.pull_request.head.sha }}  
         echo "pr base => gh sha "
         git diff --stat ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
+        echo "pr base <= gh sha "
+        git diff --stat ${{ github.sha }} ${{ github.event.pull_request.base.sha }} 
         echo "pr head => gh sha "
         git diff --stat ${{ github.event.pull_request.head.sha }} ${{ github.sha }}
+        echo "pr head <= gh sha "
+        git diff --stat ${{ github.sha }} ${{ github.event.pull_request.head.sha }} 
         
         
         bun --bun run dist/index.js
