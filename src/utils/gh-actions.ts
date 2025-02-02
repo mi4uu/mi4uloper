@@ -11,6 +11,10 @@ import * as config from '../config'
 // } = await octokit.rest.users.getAuthenticated();
 
 export const getChangedFiles = async (baseRef: string, headRef: string) => {
+  console.log(await Bun.$`pwd `.text())
+  console.log(await Bun.$`ls `.text())
+
+
   const files = await Bun.$`git diff --name-only ${baseRef} ${headRef} `.text()
   return files.split("\n").map(f => f.trim()).filter(f => f.length > 1)
 }
