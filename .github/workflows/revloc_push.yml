@@ -2,9 +2,11 @@ name: PR Review with local
 on:
   push:
 permissions: write-all
-
 jobs:
   review:
+    env:
+        ACTIONS_RUNNER_DEBUG: true
+        ACTIONS_STEP_DEBUG: true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
