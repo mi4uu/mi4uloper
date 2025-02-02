@@ -11,10 +11,10 @@ const main = async ()=>{
 
   // const baseRef='2b0b546099cd0582e1cf9674ce2d4c4050a0eb2e'
   // const headRef='HEAD'
-  const baseRef=info.baseRefOid
-  const headRef=info.headRefOid
-
-
+  // const baseRef=info.baseRefOid
+  // const headRef=info.headRefOid
+  const headRef=info.baseRefOid
+  const baseRef=info.headRefOid
 
   const files=await getChangedFiles(baseRef,headRef)
   const summary=await getChangedSummary(baseRef,headRef)
