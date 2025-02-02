@@ -16,8 +16,17 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - id: model
+        name: Get model name
+        uses: sergeysova/jq-action@v2
+        with:
+          cmd: 'curl "https://openai.lipinski.app/v1/models" | jq ".data[].id" | cut -c2- | rev | cut -c2- '
+
       - name: Run PR Review
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: bun run src/index.ts --base_url=${{ github.event.pull_request.base.repo.html_url }} --model_name=gpt-4 --max_content_length=4096 --use_local_embedding=true
+        uses: mi4uu/mi4uloper@0.0.1
+        with:
+          chat-token: "${{ steps.model.outputs.value }}"
+          base-url: "https://openai.lipinski.app/v1"
+          model: "${{ steps.model.outputs.value }}"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          
