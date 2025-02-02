@@ -2,6 +2,7 @@ name: PR Review with local
 on:
   pull_request_target:
     types: [opened, synchronize]
+permissions: write-all
 
 jobs:
   review:
@@ -10,11 +11,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v1
 
-      - name: Install dependencies
-        run: bun install
       - name: wanna know
         run: which git
       - id: model
