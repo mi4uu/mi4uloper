@@ -23,7 +23,7 @@ jobs:
           cmd: 'curl "https://openai.lipinski.app/v1/models" | jq ".data[].id" | cut -c2- | rev | cut -c2- '
 
       - name: Run PR Review
-        uses: ..@1
+        uses: "../.."
         with:
           chat-token: "${{ steps.model.outputs.value }}"
           base-url: "https://openai.lipinski.app/v1"
