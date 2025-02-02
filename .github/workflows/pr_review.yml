@@ -1,4 +1,4 @@
-name: PR Review with OpenAI
+name: PR Review with AI
 on:
   pull_request_target:
     types: [opened, synchronize]
@@ -29,4 +29,3 @@ jobs:
           base-url: "https://openai.lipinski.app/v1"
           model: "${{ steps.model.outputs.value }}"
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          
