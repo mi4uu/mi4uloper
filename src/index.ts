@@ -14,8 +14,9 @@ const main = async ()=>{
   // const headRef='HEAD'
   // const baseRef=info.baseRefOid
   // const headRef=info.headRefOid
-  const headRef=info.baseRefOid
-  const baseRef=info.headRefOid
+
+  const headRef='remotes/origin/master'
+  const baseRef='HEAD'
 
   const files=await getChangedFiles(baseRef,headRef)
   const summary=await getChangedSummary(baseRef,headRef)

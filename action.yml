@@ -77,4 +77,16 @@ runs:
         excludePatterns: ${{ inputs.exclude-patterns }}
         maxLength: ${{ inputs.max-length }}
 
-      run: bun --bun run src/index.ts
+      run: |
+        echo "PWD:"
+        pwd
+        echo "LS:"
+        ls
+        echo "GIT STATUS:"
+        git status
+        echo "GIT diff stat"
+        git diff --stat HEAD origin/master
+        echo "BRANCH:"
+        git rev-parse --abbrev-ref HEAD
+
+        bun --bun run dist/index.js

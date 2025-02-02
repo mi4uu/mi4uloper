@@ -2,8 +2,15 @@
   "name": "mi4uloper",
   "module": "src/index.ts",
   "type": "module",
+  "scripts": {
+    "build": "bun build src/index.ts --target bun --outdir dist",
+    "buildhook":"bun run build && git update-index --again "
+  },
   "devDependencies": {
-    "@types/bun": "^1.2.2"
+    "@biomejs/biome": "^1.9.4",
+    "@types/bun": "^1.2.2",
+    "biome": "^0.3.3",
+    "pre-commit": "^1.2.2"
   },
   "peerDependencies": {
     "typescript": "^5.7.3"
@@ -19,8 +26,15 @@
     "zod": "^3.24.1"
   },
   "trustedDependencies": [
+    "@biomejs/biome",
+    "core-js",
     "onnxruntime-node",
+    "pre-commit",
     "protobufjs",
-    "sharp"
+    "sharp",
+    "spawn-sync"
+  ],
+  "pre-commit": [
+    "buildhook"
   ]
 }
