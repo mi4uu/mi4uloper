@@ -52,6 +52,7 @@ export const getFileDiff = async (baseRef: string, headRef: string, file?: strin
 }
 
 export const isGitRepo = async () => {
+  
   const result = await Bun.$`git rev-parse --is-inside-work-tree`.text()
   return result.trim() === 'true'
 }
