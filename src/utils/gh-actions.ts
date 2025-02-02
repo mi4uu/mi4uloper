@@ -42,6 +42,7 @@ export const getFileDiff = async (baseRef: string, headRef: string, file?: strin
       error:"is error!!!",
       msg: decoder.decode(stderr)
     })
+    return stderr.toString()
   }
   return stdout.toString()
   }
