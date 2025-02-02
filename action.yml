@@ -98,6 +98,8 @@ runs:
         git diff --stat HEAD "${GITHUB_LAST_COMMIT_REF}"
         echo "GIT diff stat GITHUB_PR_REF"
         git diff --stat HEAD "${GITHUB_PR_REF}"
+        echo "GIT diff stat GITHUB_LAST_COMMIT_REF ... GITHUB_PR_REF"
+        git diff --stat "${GITHUB_LAST_COMMIT_REF}" "${GITHUB_PR_REF}"
         echo "BRANCH:"
         git rev-parse --abbrev-ref HEAD
 
