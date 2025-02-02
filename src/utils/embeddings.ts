@@ -16,24 +16,14 @@ import { SentenceTransformer } from "./sentence-transformer";
 
 export const embeddings_local = async (input:string ):Promise<number[][]>=> {
     const model = await SentenceTransformer.from_pretrained(
-        // "mixedbread-ai/mxbai-embed-large-v1",
-        // "jxm/cde-small-v2"
-        // "stella-base-en-v2"
        config.embedding_model
    ,  {local_files_only:false} );
       const sentence_embedding = await model.encode(["Hello world!"]);
       return sentence_embedding
 }
-export const embeddings_local_ = async (input:string ):Promise<number[]>=> {
+export const embeddings_local_back = async (input:string ):Promise<number[]>=> {
     const { pipeline } = await import("@xenova/transformers");
-    // const { SentenceTransformer }= await import("@tuesdaycrowd/sentence-transformers")
 
-    // const { pipeline } = await import("@huggingface/transformers");
-    
-
-    // let pipe2 = await pipeline("summarization", config.embedding_model);
-    // const embedding2 = await pipe2(input.split("\n"));
-    // console.log(embedding2)
     let pipe = await pipeline("feature-extraction", config.embedding_model);
     const embedding = await pipe(input.split("\n"), { pooling: "mean", normalize: true });
     return Array.from(embedding.data);
