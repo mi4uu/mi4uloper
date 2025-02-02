@@ -1,19 +1,26 @@
-name: PR Review with AI
+name: PR Review with local pr
 on:
-  pull_request_target:
-    types: [opened, synchronize]
-
+  pull_request:
+permissions: write-all
 jobs:
   review:
+    env:
+        ACTIONS_RUNNER_DEBUG: true
+        ACTIONS_STEP_DEBUG: true
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
 
       - name: Install dependencies
         run: bun install
-
+      - name: wanna know
+        run: git config --global --add safe.directory .
+      - name: yyyls
+        run: ls
       - id: model
         name: Get model name
         uses: sergeysova/jq-action@v2
@@ -27,4 +34,6 @@ jobs:
           base-url: "https://openai.lipinski.app/v1"
           model: "${{ steps.model.outputs.value }}"
           github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+            ACTIONS_RUNNER_DEBUG: true
           

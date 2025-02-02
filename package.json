@@ -3,12 +3,13 @@
   "module": "src/index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "^1.2.2"
   },
   "peerDependencies": {
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@actions/core": "^1.11.1",
     "@huggingface/transformers": "^3.3.2",
     "@lancedb/lancedb": "^0.15.0",
     "@tuesdaycrowd/sentence-transformers": "^1.0.1",
