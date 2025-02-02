@@ -1,6 +1,7 @@
 name: PR Review with local pr
 on:
   pull_request:
+    branches: ['ddddd']
 permissions: write-all
 jobs:
   review:

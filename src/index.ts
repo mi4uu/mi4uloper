@@ -15,8 +15,8 @@ const main = async ()=>{
   // const baseRef=info.baseRefOid
   // const headRef=info.headRefOid
 
-  const headRef='HEAD'
-  const baseRef=config.GITHUB_LAST_COMMIT_REF!
+  const headRef=config.GITHUB_PR_HEAD_REF!
+  const baseRef=config.GITHUB_PR_REF!
 
   const files=await getChangedFiles(baseRef,headRef)
   const summary=await getChangedSummary(baseRef,headRef)
