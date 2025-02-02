@@ -23,7 +23,6 @@ const main = async ()=>{
   logger.log(files)
   for(const file of files){
     const diff = await getFileDiff(baseRef,headRef,file)
-    // console.log(diff)
     if(diff.length>3000) continue
     logger.log(file)
     // const emb=await embeddings(diff)
