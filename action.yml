@@ -84,34 +84,26 @@ runs:
         echo "LS:"
         ls
         echo "github.action_path : ${{ github.action_path }}"
-        echo "LS github.action_path : ${{ github.action_path }}"
-        ls ${{ github.action_path }}
-        echo "  github.event.pull_request.head.sha: ${{ github.event.pull_request.head.sha }}"
-        echo " github.head_ref :  ${{ github.head_ref }} "
-        # pr first commit?
-        #echo " GITHUB_REF :    $GITHUB_REF"
-        # last commit in pr
-        #echo " GITHUB_SHA :   $GITHUB_SHA"
+
         
-        echo "GIT STATUS:"
-        git status
-        echo "GIT log:"
-        git log
-        echo "BRANCH:"
-        git rev-parse --abbrev-ref HEAD
-        echo "GIT diff stat GITHUB_LAST_COMMIT_REF"
-        echo "GIT diff stat GITHUB_PR_REF"
-        #git diff --stat HEAD  ${{ github.head_ref }}
-        git pull
-        echo "GIT log:"
-        git log
-        git diff --stat ${{ github.event.pull_request.head.sha }} HEAD
-        git diff --stat HEAD ${{ github.event.pull_request.head.sha }} 
         
-        echo "GIT diff stat GITHUB_PR_REF"
+        echo "last commit -> pr"
+        git diff --stat ${{ github.sha }} ${{ github.head_sha }}
+        echo "last commit -> head"
+        git diff --stat  ${{ github.sha }} HEAD
+        
+        echo "pr -> head"
         git diff --stat  ${{ github.head_sha }} HEAD
         echo "GIT diff stat GITHUB_LAST_COMMIT_REF ... GITHUB_PR_REF"
         git diff --stat ${{ github.event.pull_request.head.sha }}  ${{ github.head_sha }}
-        
 
+
+        echo "github.sha ${{ github.sha }}"
+        echo "github.head_sha ${{ github.head_sha }}"
+        echo "event.head.sh ${{ github.event.pull_request.head.sh }}"
+        echo "github.sha ${{ github.sha }}"
+        echo "github.base.sha ${{ github.base.sha }}"
+        echo "base sha => last commit "
+        git diff --stat ${{ github.base.sha }} ${{ github.sha }}
+        
         bun --bun run dist/index.js
