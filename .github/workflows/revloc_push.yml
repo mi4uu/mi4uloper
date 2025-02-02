@@ -15,7 +15,9 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: wanna know
-        run: which git
+        run: pwd
+      - name: yyyls
+        run: ls
       - id: model
         name: Get model name
         uses: sergeysova/jq-action@v2
