@@ -76,6 +76,8 @@ runs:
         includePatterns: ${{ inputs.include-patterns }}
         excludePatterns: ${{ inputs.exclude-patterns }}
         maxLength: ${{ inputs.max-length }}
+        GITHUB_LAST_COMMIT_REF: ${{ github.event.pull_request.head.sha }}"
+        GITHUB_PR_REF: ${{ github.head_ref }}"
 
       run: |
         echo "PWD:"
@@ -92,8 +94,10 @@ runs:
         
         echo "GIT STATUS:"
         git status
-        echo "GIT diff stat"
-        git diff --stat HEAD origin/master
+        echo "GIT diff stat GITHUB_LAST_COMMIT_REF"
+        git diff --stat HEAD "${GITHUB_LAST_COMMIT_REF}"
+        echo "GIT diff stat GITHUB_PR_REF"
+        git diff --stat HEAD "${GITHUB_PR_REF}"
         echo "BRANCH:"
         git rev-parse --abbrev-ref HEAD
 
