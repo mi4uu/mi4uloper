@@ -87,13 +87,7 @@ runs:
 
         
         
-        echo "last commit -> pr"
-        git diff --stat ${{ github.sha }} ${{ github.head_sha }}
-        echo "last commit -> head"
-        git diff --stat  ${{ github.sha }} HEAD
         
-        echo "pr -> head"
-        git diff --stat  ${{ github.head_sha }} HEAD
         #echo "GIT diff stat GITHUB_LAST_COMMIT_REF ... GITHUB_PR_REF"
         #git diff --stat ${{ github.event.pull_request.head.sha }}  ${{ github.head_sha }}
 
@@ -102,8 +96,12 @@ runs:
         #echo "github.head_sha ${{ github.head_sha }}"
         echo "event.head.sha ${{ github.event.pull_request.head.sha }}"
         echo "event.base.sha ${{ github.event.pull_request.base.sha }}"
-        echo "github.base_sha ${{ github.base_sha }}"
-        echo "github.head_sha ${{ github.head_sha }}"
+        echo "last commit -> pr"
+        git diff --stat ${{ github.sha }} ${{ github.head_sha }}
+        echo "last commit -> head"
+        git diff --stat  ${{ github.sha }} HEAD
+        echo "pr -> head"
+        git diff --stat  ${{ github.head_sha }} HEAD
         echo "pr base => gh sha "
         git diff --stat ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
         echo "pr head => gh sha "
