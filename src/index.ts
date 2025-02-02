@@ -44,7 +44,10 @@ const main = async ()=>{
       const msg=`${response.review.comment}
       IS ACTION REQUIRED: ${response.review.is_action_required?'YES':'NO'}
       `
-      addComment(response.review.comment, file,baseRef)
+
+      logger.info("sending comment")
+      const commentResult=await addComment(response.review.comment, file,baseRef)
+      logger.info(`comment send: ${commentResult}`)
     }
   }
 

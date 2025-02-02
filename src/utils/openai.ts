@@ -39,10 +39,10 @@ export const reviewChanges = async (diff:string,baseURL:string,apiKey:string,mod
       ],
       // max_completion_tokens: 128,
       response_format: zodResponseFormat(ReviewSchema, "review"),
-      temperature:0
+      temperature:0, 
 
     },{
-      stream:false,
+      stream:false, maxRetries:5
     });
 
     return response.choices[0].message.parsed;
