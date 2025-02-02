@@ -14,8 +14,10 @@ import core from '@actions/core'
 export const getChangedFiles = async (baseRef: string, headRef: string) => {
   core.info(await Bun.$`pwd `.text())
   core.info(await Bun.$`ls `.text())
-
-
+  core.warning(`git diff --name-only ${baseRef} ${headRef} `);
+  core.info(`git diff --name-only ${baseRef} ${headRef} `);
+  console.log(`git diff --name-only ${baseRef} ${headRef} `);
+  Bun.inspect(`git diff --name-only ${baseRef} ${headRef} `)
   try{
     const files = await Bun.$`git diff --name-only ${baseRef} ${headRef} `.text()
   return files.split("\n").map(f => f.trim()).filter(f => f.length > 1)
