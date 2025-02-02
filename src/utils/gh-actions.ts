@@ -32,6 +32,7 @@ export const getChangedSummary = async (baseRef: string, headRef: string) => {
 }
 
 export const getFileDiff = async (baseRef: string, headRef: string, file?: string) => {
+  console.log(`git diff  ${baseRef} ${headRef} -- ${file}`)
   try{
   if (file)
     return await Bun.$`git diff  ${baseRef} ${headRef} -- ${file}`.text()
