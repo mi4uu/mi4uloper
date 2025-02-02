@@ -16,8 +16,8 @@ export const getChangedFiles = async (baseRef: string, headRef: string) => {
   core.info(await Bun.$`ls `.text())
 
 
-  const files = await Bun.$`git diff --name-only ${baseRef} ${headRef} `.text()
   try{
+    const files = await Bun.$`git diff --name-only ${baseRef} ${headRef} `.text()
   return files.split("\n").map(f => f.trim()).filter(f => f.length > 1)
 } catch (err:any ) {
   core.warning(err.stdout.toString());
