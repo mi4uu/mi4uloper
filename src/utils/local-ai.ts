@@ -19,9 +19,7 @@ export const local_gen = async (input:string )=> {
       const output = await generator(messages, { max_new_tokens: 128 });
     //   console.log(output[0].generated_text.at(-1).content);
       return output[0]
-    // return gen
-    // return Array.from(embedding.data);
-    // return embedding.tolist()
+  
 }
 const x=await local_gen("sss")
 console.log(x)

@@ -24,6 +24,7 @@ const main = async ()=>{
   for(const file of files){
     const diff = await getFileDiff(baseRef,headRef,file)
     // console.log(diff)
+    if(diff.length>3000) continue
     logger.log(file)
     // const emb=await embeddings(diff)
     // console.log(JSON.stringify(emb))
@@ -44,7 +45,10 @@ const main = async ()=>{
       const msg=`${response.review.comment}
       IS ACTION REQUIRED: ${response.review.is_action_required?'YES':'NO'}
       `
-      addComment(response.review.comment, file,baseRef)
+
+      logger.info("sending comment")
+      const commentResult=await addComment(response.review.comment, file,baseRef)
+      logger.info(`comment send: ${commentResult}`)
     }
   }
 
