@@ -32,17 +32,22 @@ export const getChangedSummary = async (baseRef: string, headRef: string) => {
 }
 
 export const getFileDiff = async (baseRef: string, headRef: string, file?: string) => {
+  if(file){
   console.log(`git diff  ${baseRef} ${headRef} -- ${file}`)
-  try{
-  if (file)
-    return await Bun.$`git diff  ${baseRef} ${headRef} -- ${file}`.text()
+  const { stdout, stderr, exitCode } = await Bun.$`git diff  ${baseRef} ${headRef} -- ${file}`
+  if(exitCode!==0){
+    const decoder = new TextDecoder();
+
+    console.error({
+      error:"is error!!!",
+      msg: decoder.decode(stderr)
+    })
+  }
+  return stdout.toString()
+  }
+ 
   return await Bun.$`git diff  ${baseRef} ${headRef}`.text()
-} catch (err:any ) {
-  console.log(`Failed with code ${err.exitCode}`);
-  console.log(err.stdout.toString());
-  console.log(err.stderr.toString());
-  throw err
-}
+
 }
 
 export const isGitRepo = async () => {
