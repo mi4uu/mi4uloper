@@ -12,7 +12,7 @@ import * as config from '../config'
 
 export const getChangedFiles = async (baseRef:string, headRef:string)=>{
    const files= await Bun.$`git diff --name-only ${baseRef} ${headRef} `.text()
-   return files.split("\n").map(f=>f.trim())
+   return files.split("\n").map(f=>f.trim()).filter(f=>f.length>1)
 }
 export const getChangedSummary = async (baseRef:string, headRef:string)=>{
     const files= await Bun.$`git diff  --name-status ${baseRef} ${headRef} `.text()
@@ -32,7 +32,15 @@ export const isGitRepo = async ()=>{
 
 // git diff  ${baseRef} ${headRef} -- ${file} 
 // git diff --name-only ${base} ${head} 
+export const addComment = async (comment:string, file:string, commit:string)=>{
 
+return await Bun.$`gh api \
+  --method POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /repos/OWNER/REPO/pulls/PULL_NUMBER/comments \
+   -f "body=${comment}" -f "commit_id=${commit}" -f "path=${file}"`.text()
+}
 export const getPrInfo = async ()=>{
     const result = await Bun.$`gh pr view ${config.pr} --repo ${config.repo} --json title,body,baseRefOid,headRefOid,headRepository,state
 `.json() as {

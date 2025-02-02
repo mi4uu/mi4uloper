@@ -20,7 +20,7 @@ const ReviewSchema = z.object({
     comment: z.string().describe("your code comment."),
   }), z.object({
     is_comment_needed:z.literal(false).describe('this change is fine and dont need your feedback.')
-  })]),
+  })]).default({is_comment_needed:false}),
   code_improvement:z.enum(['-5','4','3','2','1','0','1','2','3','4','5']).default('0').describe("in scale from -5 to 5 code improvement after this change. -5 mean bad change, 5 mean great change")
 });
 
